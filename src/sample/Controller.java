@@ -21,23 +21,29 @@ public class Controller implements Initializable {
     public void addItem(){
         System.out.println("addItem");
         String s = text.getText();
-        ToDoItem item = new ToDoItem(s, false);
-        toDoItems.add(item);
-        text.clear();
+        if (s != null && !s.isEmpty()) {
+            ToDoItem item = new ToDoItem(s, false);
+            toDoItems.add(item);
+            text.clear();
+        }
     }
 
     public void removeItem(){
         System.out.println("removeItem");
         ToDoItem item = (ToDoItem) list.getSelectionModel().getSelectedItem();
-        toDoItems.remove(item);
-        list.refresh();
+        if (item != null) {
+            toDoItems.remove(item);
+            list.refresh();
+        }
     }
 
     public void toggleItem(){
         System.out.println("toggleItem");
         ToDoItem item = (ToDoItem) list.getSelectionModel().getSelectedItem();
-        item.isDone = !item.isDone;
-        list.refresh();
+        if ( item != null) {
+            item.isDone = !item.isDone;
+            list.refresh();
+        }
     }
 
     @Override
